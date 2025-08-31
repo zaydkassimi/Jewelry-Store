@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-gem"></i> Jewelry Store
+            </a>
+            <div class="nav-buttons">
+                <button class="cart-button" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <div class="admin-dropdown-container">
+                    <button class="admin-btn" id="adminBtn">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </button>
+                    <div class="admin-menu" id="adminMenu">
+                        <a href="admin.html" class="admin-menu-item">
+                            <i class="fas fa-chart-line"></i>
+                            Dashboard
+                        </a>
+                        <button class="admin-menu-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search jewelry...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="filter-container">
+            <button class="filter-button" onclick="sortProducts('low')">
+                <i class="fas fa-sort-amount-down-alt"></i> Price Low to High
+            </button>
+            <button class="filter-button" onclick="sortProducts('high')">
+                <i class="fas fa-sort-amount-up"></i> Price High to Low
+            </button>
+        </div>
+        <div id="productsContainer" class="row">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="username" placeholder="Username">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-outline-primary" onclick="showDesignerSignup()">
+                            Sign Up as Designer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Designer Signup Modal -->
+    <div class="modal fade" id="designerSignupModal" tabindex="-1" aria-labelledby="designerSignupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="designerSignupModalLabel">Designer Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="designerSignupForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="designerName" placeholder="Full Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="designerEmail" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="designerUsername" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="designerPassword" placeholder="Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="designerBio" placeholder="Short bio/description" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="checkoutSuccess" class="alert alert-success d-none">
+                        Order placed successfully! Thank you for shopping with us.
+                    </div>
+                    <div id="cartContent">
+                        <!-- Cart items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html> 
